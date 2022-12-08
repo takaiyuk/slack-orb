@@ -16,8 +16,7 @@ jobs:
       - run:
           command: |
             msg=$(./.circleci/msg.sh)
-            echo "export MSG='${msg}'" >> $BASH_ENV
-            echo $MSG
+            echo 'export MSG="$msg"' >> "$BASH_ENV"
       - slack/notify:
           custom: |
             {

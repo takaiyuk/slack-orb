@@ -13,6 +13,10 @@ jobs:
     executor: base
     steps:
       - checkout
+      - run:
+          command: |
+            msg=$(./.circleci/msg.sh)
+            echo "export MSG='${msg}'" >> $BASH_ENV
       - slack/notify:
           custom: |
             {
@@ -21,7 +25,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "```\nHello\nWorld\n```"
+                    "text": "${MSG}"
                   }
                 }
               ]
